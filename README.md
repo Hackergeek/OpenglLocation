@@ -10,6 +10,6 @@
 
 ### 项目部分演示
 
-![原图](./art/demo_normal.png)
+<img src="./art/demo_normal.png" alt="原图" style="zoom:25%;" />
 
-![原图](./art/demo_rotate_90.png)
+<img src="./art/demo_rotate_90.png" alt="原图" style="zoom:25%;" />
