@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OpenglLocation</string>
+    <string name="rotate_180">逆时针旋转180度</string>
+    <string name="rotate_270">逆时针旋转270度</string>
+    <string name="normal">原图展示</string>
+    <string name="rotate_90">逆时针旋转90度</string>
+    <string name="flip">左右翻转</string>
+    <string name="rotate_270_flip">逆时针旋转270度并左右翻转</string>
+</resources>
