@@ -6,10 +6,8 @@
 
 ### 项目相关知识
 
-1. 在OpenGL中，绘制一个矩形或者多边形是通过绘制多个三角形来达成的，因为在三维坐标系（x,y,z)中，三个顶点可以确定一个平面。
+1. 在OpenGL中，绘制一个矩形或者多边形是通过绘制多个三角形来达成的，因为在三维坐标系（x,y,z)中，三个顶点可以确定一个平面。 
 
 ### 项目部分演示
 
-<img src="./art/demo_normal.png" alt="原图" style="zoom:25%;" />
-
-<img src="./art/demo_rotate_90.png" alt="原图" style="zoom:25%;" />
+<img src="./art/demo.png" alt="逆时针旋转90度" width=300 /> <img src="./art/demo_normal.png" alt="原图" width=300 /> <img src="./art/demo_rotate_90.png" alt="逆时针旋转90度" width=300 />
