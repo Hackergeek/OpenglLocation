@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/normal"
-        android:title="@string/normal" />
-    <item android:id="@+id/rotate_90"
+    <item
+        android:id="@+id/full_normal_vertex"
+        android:title="@string/full_normal_vertex" />
+    <item
+        android:id="@+id/rotate_90"
         android:title="@string/rotate_90" />
-    <item android:id="@+id/rotate_180"
+    <item
+        android:id="@+id/rotate_180"
         android:title="@string/rotate_180" />
-    <item android:id="@+id/rotate_270"
+    <item
+        android:id="@+id/rotate_270"
         android:title="@string/rotate_270" />
-    <item android:id="@+id/flip"
+    <item
+        android:id="@+id/flip"
         android:title="@string/flip" />
-    <item android:id="@+id/rotate_270_flip"
+    <item
+        android:id="@+id/rotate_270_flip"
         android:title="@string/rotate_270_flip" />
+
+    <item
+        android:id="@+id/top_left_quarter_rectangle"
+        android:title="@string/top_left_quarter_rectangle" />
+   <!-- <item
+        android:id="@+id/top_right_quarter_rectangle"
+        android:title="@string/top_right_quarter_rectangle" />
+    <item
+        android:id="@+id/bottom_left_quarter_rectangle"
+        android:title="@string/bottom_left_quarter_rectangle" />
+    <item
+        android:id="@+id/bottom_right_quarter_rectangle"
+        android:title="@string/bottom_right_quarter_rectangle" />
+    <item
+        android:id="@+id/center_quarter_rectangle"
+        android:title="@string/center_quarter_rectangle" />-->
+
+    <item
+        android:id="@+id/clip_top_left_quarter"
+        android:title="@string/clip_top_left_quarter" />
+    <!--<item
+        android:id="@+id/clip_top_right_quarter"
+        android:title="@string/clip_top_right_quarter" />
+    <item
+        android:id="@+id/clip_bottom_left_quarter"
+        android:title="@string/clip_bottom_left_quarter" />
+    <item
+        android:id="@+id/clip_bottom_right_quarter"
+        android:title="@string/clip_bottom_right_quarter" />-->
+    <item
+        android:id="@+id/clip_center_quarter"
+        android:title="@string/clip_center_quarter" />
 </menu>

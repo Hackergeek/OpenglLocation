@@ -2,8 +2,23 @@
     <string name="app_name">OpenglLocation</string>
     <string name="rotate_180">逆时针旋转180度</string>
     <string name="rotate_270">逆时针旋转270度</string>
-    <string name="normal">原图展示</string>
+    <string name="full_normal_vertex">全屏矩形</string>
     <string name="rotate_90">逆时针旋转90度</string>
     <string name="flip">左右翻转</string>
     <string name="rotate_270_flip">逆时针旋转270度并左右翻转</string>
+    <string name="clip_top_left_quarter_rectangle">只显示左上角四分之一</string>
+    <string name="clip_top_right_rectangle">只显示右上角四分之一</string>
+    <string name="clip_bottom_left_rectangle">只显示左下角四分之一</string>
+    <string name="clip_bottom_right_rectangle">只显示右下角四分之一</string>
+    <string name="clip_center_rectangle">只显示中间四分之一</string>
+    <string name="top_left_quarter_rectangle">左上四分之一矩形</string>
+    <string name="top_right_quarter_rectangle">右上四分之一矩形</string>
+    <string name="bottom_left_quarter_rectangle">左下四分之一矩形</string>
+    <string name="bottom_right_quarter_rectangle">右下四分之一矩形</string>
+    <string name="center_quarter_rectangle">居中四分之一矩形</string>
+    <string name="clip_top_left_quarter">采样图片左上角四分之一</string>
+    <string name="clip_top_right_quarter">采样图片右上角四分之一</string>
+    <string name="clip_bottom_left_quarter">采样图片左下角四分之一</string>
+    <string name="clip_bottom_right_quarter">采样图片右下角四分之一</string>
+    <string name="clip_center_quarter">采样图片中四分之一</string>
 </resources>

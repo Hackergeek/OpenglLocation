@@ -11,18 +11,40 @@ import java.nio.FloatBuffer;
 
 public class ImageFilter {
 
-
+    static final int VERTEX_COORDINATE_2D_SIZE = 2;
+    static final int TEXTURE_COORDINATE_2D_SIZE = 2;
     /**
      * 世界坐标系， 用于描边，确认形状，绘制一个矩形
      * (-1,1)      |     (1,1)
      * -----------------------
      * (-1,-1)    |     (1,-1)
      */
-    static final float WORLD_COORDINATE_RECTANGLE[] = {
+    static final float VERTEX_COORDINATE_RECTANGLE[] = {
             -1.0f, 1.0f, // //左上角坐标
             1.0f, 1.0f,  // 右上角坐标
             -1.0f, -1.0f, // 左下角坐标
             1.0f, -1.0f,  // 右下角坐标
+    };
+
+    static final float VERTEX_COORDINATE_QUARTER_TOP_LEFT_RECTANGLE[] = {
+            -1.0f, 1.0f, // //左上角坐标
+            0.0f, 1.0f,  // 右上角坐标
+            -1.0f, 0.0f, // 左下角坐标
+            0.0f, 0.0f,  // 右下角坐标
+    };
+
+    static final float TEXTURE_COORDINATE_QUARTER_TOP_LEFT[] = {
+            0.0f, 0.0f, //左上角坐标
+            0.5f, 0.0f, //右上角坐标
+            0.0f, 0.5f, //左下角坐标
+            0.5f, 0.5f, //右下角坐标
+    };
+
+    static final float TEXTURE_COORDINATE_QUARTER_CENTER[] = {
+            0.25f, 0.25f, //左上角坐标
+            0.75f, 0.25f, //右上角坐标
+            0.25f, 0.75f, //左下角坐标
+            0.75f, 0.75f, //右下角坐标
     };
 
 
@@ -32,19 +54,19 @@ public class ImageFilter {
      * |(0,0)    |     (1,0)
      * |         |
      * |(0,1)    |     (1,1)
-     *
+     * <p>
      * 逆时针旋转90度
      * -----------------------
      * |(1,0)    |     (1,1)
      * |         |
      * |(0,0)    |     (0,1)
-     *
+     * <p>
      * 逆时针旋转180度
      * -----------------------
      * |(1,1)    |     (0,1)
      * |         |
      * |(1,0)    |     (0,0)
-     *
+     * <p>
      * 逆时针旋转270度
      * -----------------------
      * |(0,1)    |     (0,0)
@@ -120,13 +142,13 @@ public class ImageFilter {
     }
 
     float[] textureCoordinate = TEXTURE_COORDINATE;
+    float[] vertexCoordinateArray = VERTEX_COORDINATE_RECTANGLE;
 
     public void loadVertex() {
-        float[] worldCoordinate = WORLD_COORDINATE_RECTANGLE;
-        mPositionBuffer = ByteBuffer.allocateDirect(worldCoordinate.length * 4)
+        mPositionBuffer = ByteBuffer.allocateDirect(vertexCoordinateArray.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
-        mPositionBuffer.put(worldCoordinate).position(0);
+        mPositionBuffer.put(vertexCoordinateArray).position(0);
 
         mTextureCubeBuffer = ByteBuffer.allocateDirect(textureCoordinate.length * 4)
                 .order(ByteOrder.nativeOrder())
@@ -134,6 +156,11 @@ public class ImageFilter {
         mTextureCubeBuffer.put(textureCoordinate).position(0);
     }
 
+    public void setVertexCoordinateArray(float[] vertexCoordinateArray) {
+        this.vertexCoordinateArray = vertexCoordinateArray;
+        mPositionBuffer.clear();
+        mPositionBuffer.put(vertexCoordinateArray).position(0);
+    }
 
     public void setTextureCoordinate(float[] textureCoordinate) {
         this.textureCoordinate = textureCoordinate;
@@ -172,26 +199,28 @@ public class ImageFilter {
 
         GLES20.glUseProgram(mProgramId);
         mPositionBuffer.position(0);
-        GLES20.glVertexAttribPointer(mPosition, 2, GLES20.GL_FLOAT, false, 0, mPositionBuffer);
+        // *4 GL_FLOAT占四个字节
+        GLES20.glVertexAttribPointer(mPosition, VERTEX_COORDINATE_2D_SIZE, GLES20.GL_FLOAT,
+                false, VERTEX_COORDINATE_2D_SIZE * 4, mPositionBuffer);
         GLES20.glEnableVertexAttribArray(mPosition);
 
         mTextureCubeBuffer.position(0);
-        GLES20.glVertexAttribPointer(inputTextureBuffer, 2, GLES20.GL_FLOAT, false, 0,
-                mTextureCubeBuffer);
+        GLES20.glVertexAttribPointer(inputTextureBuffer, TEXTURE_COORDINATE_2D_SIZE, GLES20.GL_FLOAT,
+                false, VERTEX_COORDINATE_2D_SIZE * 4, mTextureCubeBuffer);
         GLES20.glEnableVertexAttribArray(inputTextureBuffer);
 
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, glTextureId);
         GLES20.glUniform1i(mInputTexture, 0);
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0,
+                vertexCoordinateArray.length / VERTEX_COORDINATE_2D_SIZE);
 
         GLES20.glDisableVertexAttribArray(mPosition);
         GLES20.glDisableVertexAttribArray(inputTextureBuffer);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 
         GLES20.glDisable(GLES20.GL_BLEND);
-
     }
 
 }
